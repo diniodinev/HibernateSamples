@@ -17,7 +17,7 @@ public class Article {
     @Nonnull
     private long id;
 
-    @Column(name = "name", nullable = true)
+    @Column(name = "name", nullable = true, length = 512)
     @CheckForNull
     private String url;
 
