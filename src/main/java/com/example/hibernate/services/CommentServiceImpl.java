@@ -1,9 +1,5 @@
 package com.example.hibernate.services;
 
-import com.example.hibernate.entities.Comment;
-
-import java.util.List;
-
 /*
 * Copyright 2013 the original author or authors.
 *
@@ -17,14 +13,4 @@ import java.util.List;
 */
 public class CommentServiceImpl extends CommentService {
 
-    @Override
-    public List<Comment> findAll() {
-        try {
-            entityManager.getTransaction().begin();
-            return entityManager.createQuery("SELECT a FROM COMMENT a").getResultList();
-        } finally {
-            entityManager.getTransaction().commit();
-            entityManager.close();
-        }
-    }
 }

@@ -1,6 +1,8 @@
 package com.example.hibernate.dao;
 
 import com.example.hibernate.entities.Comment;
+import com.example.hibernate.entities.QComment;
+import com.mysema.query.jpa.JPQLQuery;
 
 import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
@@ -11,17 +13,34 @@ import java.util.List;
  */
 public class CommentDaoImpl implements CommentDao {
 
+    protected EntityManager entityManager;
+
     @Nonnull
-    private EntityManager entityManager;
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
     @Override
-    public Comment findById(long id) {
+    public void setEntityManager(@Nonnull EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    @Override
+    public JPQLQuery query() {
         return null;
     }
 
     @Override
+    public Comment findById(long id) {
+        QComment comment = QComment.comment;
+        return query().from(comment).where(comment.id.eq(id)).uniqueResult(comment);
+    }
+
+    @Override
     public List<Comment> findAll() {
-        return entityManager.createQuery("select * from Article").getResultList();
+        QComment comment = QComment.comment;
+        return query().from(comment).fetchAll().list(comment);
     }
 
     @Override
@@ -44,12 +63,9 @@ public class CommentDaoImpl implements CommentDao {
         return null;
     }
 
-    @Nonnull
-    public EntityManager getEntityManager() {
-        return entityManager;
+    @Override
+    public Comment save(Comment objectTOSave) {
+        return null;
     }
 
-    public void setEntityManager(@Nonnull EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 }

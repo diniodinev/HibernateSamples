@@ -13,6 +13,7 @@ package com.example.hibernate.core;
 */
 
 import com.example.hibernate.entities.Article;
+import com.example.hibernate.services.ArticleService;
 import com.example.hibernate.services.ArticleServiceImpl;
 import org.h2.tools.Server;
 import org.slf4j.Logger;
@@ -26,17 +27,20 @@ import java.util.List;
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager entityManager = factory.createEntityManager();
 
-        ArticleServiceImpl articleService = new ArticleServiceImpl();
-        articleService.setEntityManager(entityManager);
-        List<Article> articles =articleService.findAll();
+        ArticleService articleService = new ArticleServiceImpl(entityManager);
+        List<Article> articles = articleService.findAll();
 
-        for(Article a:articles){
-            System.out.println(a);
+        for (Article a : articles) {
+            System.out.println(a.getUrl());
         }
+
+        System.out.println("Find by id:" + articleService.findById(1l).getUrl());
+        System.out.println("Count in DB:" + articleService.count());
 
         startServer();
 

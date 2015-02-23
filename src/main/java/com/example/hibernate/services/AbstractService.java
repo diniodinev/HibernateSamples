@@ -12,21 +12,8 @@ package com.example.hibernate.services;
  */
 
 
-import javax.persistence.EntityManager;
-import javax.annotation.Nonnull;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @MappedSuperclass
 public abstract class AbstractService<E> {
-    @NotNull
-    protected EntityManager entityManager;
-
-    public abstract List<E> findAll();
-
-    public void setEntityManager(final EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
 }

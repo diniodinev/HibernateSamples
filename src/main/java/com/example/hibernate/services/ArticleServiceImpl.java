@@ -1,7 +1,11 @@
 package com.example.hibernate.services;
 
+import com.example.hibernate.dao.ArticleDao;
+import com.example.hibernate.dao.ArticleDaoImpl;
 import com.example.hibernate.entities.Article;
 
+import javax.annotation.Nonnull;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 /*
@@ -17,15 +21,26 @@ import java.util.List;
 */
 public class ArticleServiceImpl extends ArticleService {
 
+    @Nonnull
+    private ArticleDao dao;
+
+    public ArticleServiceImpl(final EntityManager entityManager) {
+        dao = new ArticleDaoImpl();
+        dao.setEntityManager(entityManager);
+    }
+
+    @Override
+    public Article findById(final long id) {
+        return dao.findById(id);
+    }
 
     @Override
     public List<Article> findAll() {
-        try {
-            entityManager.getTransaction().begin();
-            return entityManager.createQuery("SELECT a FROM Article a").getResultList();
-        } finally {
-            entityManager.getTransaction().commit();
-            entityManager.close();
-        }
+        return dao.findAll();
+    }
+
+    @Override
+    public long count() {
+        return dao.count();
     }
 }
