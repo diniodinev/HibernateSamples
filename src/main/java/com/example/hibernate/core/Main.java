@@ -39,6 +39,11 @@ public class Main {
             System.out.println(a.getUrl());
         }
 
+
+        Article article = new Article();
+        article.setUrl("asdasdas");
+        articleService.save(article);
+        
         System.out.println("Find by id:" + articleService.findById(1l).getUrl());
         System.out.println("Count in DB:" + articleService.count());
 

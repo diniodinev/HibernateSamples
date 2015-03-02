@@ -43,4 +43,10 @@ public class ArticleServiceImpl extends ArticleService {
     public long count() {
         return dao.count();
     }
+
+    public void save(Article article) {
+
+        dao.create(article);
+    }
+
 }

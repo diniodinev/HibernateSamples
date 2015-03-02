@@ -15,4 +15,6 @@ public abstract class ArticleService extends AbstractService<Article> {
     public abstract List<Article> findAll();
 
     public abstract long count();
+
+    public abstract void save(Article article);
 }

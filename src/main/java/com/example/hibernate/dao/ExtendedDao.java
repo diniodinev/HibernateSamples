@@ -13,8 +13,6 @@ public interface ExtendedDao<E> extends SampleDao<E> {
 
     public List<E> findAll();
 
-    public E save(E objectTOSave);
-
     public JPQLQuery query();
 }
 

@@ -45,7 +45,10 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public Comment create(Comment toBeSaved) {
-        return null;
+        entityManager.getTransaction().begin();
+        entityManager.persist(toBeSaved);
+        entityManager.getTransaction().commit();
+        return toBeSaved;
     }
 
     @Override
@@ -60,11 +63,6 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public Comment update(Comment toBeUpdated) {
-        return null;
-    }
-
-    @Override
-    public Comment save(Comment objectTOSave) {
         return null;
     }
 
