@@ -1,5 +1,15 @@
 package com.example.hibernate.services;
 
+import com.example.hibernate.dao.ArticleDao;
+import com.example.hibernate.dao.ArticleDaoImpl;
+import com.example.hibernate.dao.CommentDao;
+import com.example.hibernate.dao.CommentDaoImpl;
+import com.example.hibernate.entities.Comment;
+
+import javax.annotation.Nonnull;
+import javax.persistence.EntityManager;
+import java.util.List;
+
 /*
 * Copyright 2013 the original author or authors.
 *
@@ -13,4 +23,30 @@ package com.example.hibernate.services;
 */
 public class CommentServiceImpl extends CommentService {
 
+    private CommentDao dao;
+
+    public CommentServiceImpl(final EntityManager entityManager) {
+        dao = new CommentDaoImpl();
+        dao.setEntityManager(entityManager);
+    }
+
+    @Override
+    public Comment findById(@Nonnull long id) {
+        return null;
+    }
+
+    @Override
+    public List<Comment> findAll() {
+        return null;
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
+
+    @Override
+    public void save(Comment comment) {
+        dao.create(comment);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.hibernate.dao;
 import com.example.hibernate.entities.Comment;
 import com.example.hibernate.entities.QComment;
 import com.mysema.query.jpa.JPQLQuery;
+import com.mysema.query.jpa.impl.JPAQuery;
 
 import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
@@ -28,7 +29,7 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public JPQLQuery query() {
-        return null;
+        return new JPAQuery(entityManager);
     }
 
     @Override

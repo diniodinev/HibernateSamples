@@ -12,8 +12,17 @@ package com.example.hibernate.services;
  */
 
 
+import javax.annotation.Nonnull;
 import javax.persistence.MappedSuperclass;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class AbstractService<E> {
+    public abstract E findById(@Nonnull final long id);
+
+    public abstract List<E> findAll();
+
+    public abstract long count();
+
+    public abstract void save(E article);
 }
